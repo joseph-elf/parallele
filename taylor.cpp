@@ -2,6 +2,7 @@
 #include <future>
 #include <iostream>
 #include <chrono>
+#include <vector>       // vector functions
 
 using namespace std::chrono;
 using namespace std;
@@ -50,15 +51,27 @@ int main(void){
 	int nbEtoile(1000000000);
 	int nbCoeurs(3);
 	
+	vector<future<void>> taches;
+	
 	for(size_t coeur(1); coeur <=nbCoeurs; coeur++ ){
-	std::async(boucleAccelerationAsynchrone,1,nbEtoile).get();
+	taches.push_back(async(boucleAccelerationAsynchrone,1,nbEtoile));
+	
+	
+	
+
+	}
+	
+	for(size_t coeur(1); coeur <=nbCoeurs; coeur++ ){
+	taches[coeur-1].get();
 	stop = high_resolution_clock::now();
 	duration = duration_cast<milliseconds>(stop - start);
 	std::cout << duration.count() << " ms"<< std::endl;
+	
+	
+
 	}
 	
 	
-	
-	
+		
 	return 0;
 	}
