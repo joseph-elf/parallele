@@ -44,12 +44,17 @@ int main(void){
 	std::cout << duration.count() << " ms"<< std::endl;*/
 	
 	
-	
+	auto start = high_resolution_clock::now();
+	auto stop = high_resolution_clock::now();
+	auto duration = duration_cast<milliseconds>(stop - start);
 	int nbEtoile(1000000000);
 	int nbCoeurs(3);
 	
 	for(size_t coeur(1); coeur <=nbCoeurs; coeur++ ){
 	std::async(boucleAccelerationAsynchrone,1,nbEtoile).get();
+	stop = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(stop - start);
+	std::cout << duration.count() << " ms"<< std::endl;
 	}
 	
 	
