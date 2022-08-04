@@ -7,9 +7,9 @@ using namespace std::chrono;
 using namespace std;
 
 void boucleAccelerationAsynchrone(size_t init, size_t end){
-	int j = 0;
+	double j = 0;
 		for(size_t i(init); i<end; i++){
-					j+=i;
+					j+=1./i;
 				}
 				cout<<j<<endl;
 }
@@ -45,11 +45,11 @@ int main(void){
 	
 	
 	
-	int nbEtoile(1000000);
+	int nbEtoile(1000000000);
 	int nbCoeurs(3);
 	
 	for(size_t coeur(1); coeur <=nbCoeurs; coeur++ ){
-	std::async(boucleAccelerationAsynchrone,0,nbEtoile).get();
+	std::async(boucleAccelerationAsynchrone,1,nbEtoile).get();
 	}
 	
 	
