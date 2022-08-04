@@ -67,9 +67,10 @@ int main(void){
 	duration = duration_cast<milliseconds>(stop - start);
 	std::cout << duration.count() << " ms"<< std::endl;
 	
-	
 
 	}
+	cout<<"fini!"<<endl;
+	taches[0].get();
 	
 	
 		
